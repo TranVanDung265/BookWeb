@@ -1,7 +1,4 @@
 # CHƯƠNG 1: CÂU CHUYỆN NGƯỜI DÙNG (USER STORIES)
-
-> **Cấu trúc chuẩn:** Là `[Vai trò]`, tôi muốn `[Hành động/Tính năng]` để `[Mục đích/Lợi ích]`.
-
 ## 1. Nhóm người dùng: Khách hàng (Customer)
 
 ### Xác thực & Tài khoản
