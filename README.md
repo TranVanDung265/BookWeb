@@ -32,3 +32,41 @@
 * **US12:** Là admin, tôi muốn quản lý (khóa/mở) tài khoản người dùng để đảm bảo an toàn cho hệ thống.
 
 ---
+
+# CHƯƠNG 2: PHÂN TÍCH YÊU CẦU VÀ ĐỐI TƯỢNG HỆ THỐNG
+
+## 1. Phân tích yêu cầu chung
+Hệ thống cần quản lý toàn bộ chu trình bán sách trực tuyến từ khâu cập nhật hàng hóa, hiển thị cho khách hàng, xử lý giỏ hàng, tạo đơn hàng đến khâu lưu trữ lịch sử và thống kê doanh thu.
+
+---
+
+## 2. Danh sách các Đối tượng (Entities/Classes), Thuộc tính và Phương thức
+
+| Đối tượng (Object) | Thuộc tính (Attributes) | Phương thức (Methods) |
+| :--- | :--- | :--- |
+| **User (NguoiDung)** | `ma_nguoi_dung`, `ho_ten`, `email`, `mat_khau`, `so_dien_thoai`, `dia_chi`, `vai_tro` | `dang_ky()`, `dang_nhap()`, `cap_nhat_thong_tin()`, `doi_mat_khau()` |
+| **Category (DanhMuc)** | `ma_danh_muc`, `ten_danh_muc`, `mo_ta` | `them_danh_muc()`, `sua_danh_muc()`, `xoa_danh_muc()` |
+| **Book (Sach)** | `ma_sach`, `ten_sach`, `tac_gia`, `gia_ban`, `so_luong_ton`, `hinh_anh`, `mo_ta`, `ma_danh_muc` | `them_sach()`, `sua_thong_tin()`, `cap_nhat_so_luong()`, `xoa_sach()` |
+| **Cart (GioHang)** | `ma_gio_hang`, `ma_nguoi_dung`, `tong_tien_tam_tinh` | `them_vao_gio()`, `xoa_khoi_gio()`, `cap_nhat_so_luong()`, `xoa_sach_trong_gio()` |
+| **Order (DonHang)** | `ma_don_hang`, `ma_nguoi_dung`, `ngay_dat`, `tong_tien`, `trang_thai`, `dia_chi_giao_hang` | `tao_don_hang()`, `cap_nhat_trang_thai()`, `huy_don_hang()` |
+| **OrderDetail (ChiTietDonHang)** | `ma_chi_tiet`, `ma_don_hang`, `ma_sach`, `so_luong`, `don_gia` | `tinh_thanh_tien()` |
+| **Review (DanhGia)** | `ma_danh_gia`, `ma_nguoi_dung`, `ma_sach`, `so_sao`, `noi_dung`, `ngay_danh_gia` | `them_danh_gia()`, `xoa_danh_gia()` |
+
+---
+
+## 3. Mối quan hệ giữa các đối tượng (Relationships)
+
+* **DanhMuc - Sach (Quan hệ 1 - N):** Một danh mục có thể chứa nhiều cuốn sách; một cuốn sách thuộc về một danh mục chính.
+* **NguoiDung - DonHang (Quan hệ 1 - N):** Một người dùng có thể đặt nhiều đơn hàng; một đơn hàng thuộc về một người dùng.
+* **NguoiDung - GioHang (Quan hệ 1 - 1):** Mỗi người dùng tại một thời điểm sở hữu một giỏ hàng duy nhất.
+* **DonHang - Sach (Quan hệ N - N thông qua ChiTietDonHang):** Một đơn hàng chứa nhiều cuốn sách; một cuốn sách có thể nằm trong nhiều đơn hàng.
+* **NguoiDung - Sach (Quan hệ N - N thông qua DanhGia):** Một người dùng đánh giá nhiều cuốn sách; một cuốn sách nhận nhiều đánh giá.
+
+---
+
+## 4. Luồng hoạt động chính (Workflow)
+
+```text
+[Khách hàng] ──> Chọn Sách ──> Thêm vào Giỏ hàng ──> Đặt hàng (Tạo Đơn hàng)
+                                                               │
+[Admin] <── Kiểm tra số lượng tồn & Cập nhật trạng thái <──────┘
