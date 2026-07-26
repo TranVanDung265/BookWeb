@@ -78,25 +78,45 @@ Di chuyển vào thư mục dự án
 cd BookWeb
 ```
 # Cài đặt Frontend
-Di chuyển vào thư mục frontend
+
+Di chuyển vào thư mục frontend.
+
 ```bash
 cd frontend
 ```
-Cài đặt thư viện
+
+Cài đặt thư viện.
+
 ```bash
 npm install
+```
+
+---
+
 # Cài đặt Backend
-Mở Terminal mới
-Di chuyển vào thư mục backend
+
+Mở Terminal mới.
+
+Di chuyển vào thư mục backend.
+
 ```bash
 cd backend
 ```
-Cài đặt thư viện
+
+Cài đặt thư viện.
+
 ```bash
 npm install
+```
+
+---
+
 # Thiết lập cơ sở dữ liệu
-## Bước 1: Tạo Databas
+
+## Bước 1: Tạo Database
+
 Mở MySQL Workbench và tạo cơ sở dữ liệu:
+
 ```sql
 CREATE DATABASE bookstore;
 ```
