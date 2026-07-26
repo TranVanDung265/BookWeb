@@ -1,72 +1,241 @@
-# CHƯƠNG 1: CÂU CHUYỆN NGƯỜI DÙNG (USER STORIES)
-## 1. Nhóm người dùng: Khách hàng (Customer)
+# 📚 BookWeb - Website Bán Sách Trực Tuyến
 
-### Xác thực & Tài khoản
-* **US01:** Là khách hàng, tôi muốn đăng ký và đăng nhập tài khoản để quản lý thông tin cá nhân và lịch sử mua hàng.
-* **US02:** Là khách hàng, tôi muốn cập nhật thông tin giao hàng (địa chỉ, số điện thoại) để quá trình đặt hàng diễn ra nhanh chóng.
+## Giới thiệu
+BookWeb là website bán sách trực tuyến được xây dựng trong khuôn khổ học phần **Thiết kế web nâng cao**. Hệ thống được phát triển theo mô hình **Client - Server**, sử dụng **ReactJS** cho Frontend, **NestJS** cho Backend và **MySQL** làm hệ quản trị cơ sở dữ liệu.
+Website cho phép người dùng tìm kiếm, xem thông tin sách, thêm sách vào giỏ hàng, đặt hàng và quản lý đơn hàng. Quản trị viên có thể quản lý sách, danh mục thông qua hệ thống quản trị.
+# Công nghệ sử dụng
+## Frontend
+- ReactJS
+- Vite
+- Bootstrap 5
+- Axios
+- React Router DOM
+## Backend
+- NestJS
+- TypeORM
+- JWT Authentication
+- Bcrypt
+- Class Validator
+- Class Transformer
+## Database
+- MySQL
+## Công cụ
+- Visual Studio Code
+- Git & GitHub
+- Thunder Client 
+- Docker Dev Container
+---
+# Chức năng
+## Người dùng
+- Đăng ký tài khoản
+- Đăng nhập 
+- Xem danh sách sách
+- Xem chi tiết sách
+- Tìm kiếm sách
+- Thêm sách vào giỏ hàng
+- Đặt hàng
+- Xem lịch sử đơn hàng
+## Quản trị viên
+- Quản lý sách (CRUD)
+- Quản lý danh mục
+- Quản lý đơn hàng
+---
+# Cấu trúc thư mục
+```
+BookWeb
+│
+├── frontend
+│   ├── public
+│   ├── src
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── backend
+│   ├── src
+│   ├── test
+│   ├── package.json
+│   └── nest-cli.json
+│
+├── database
+|   └──bookstore.sql
+|
+└── README.md
+```
+# Yêu cầu hệ thống
+Trước khi chạy dự án cần cài đặt:
+- Node.js 20 trở lên
+- npm
+- MySQL Server
+- Git
+- Visual Studio Code
+# Hướng dẫn cài đặt
+## 1. Clone project
+```bash
+git clone https://github.com/TranVanDung265/BookWeb
+```
+Di chuyển vào thư mục dự án
+```bash
+cd BookWeb
+```
+# Cài đặt Frontend
 
-### Tìm kiếm & Xem sản phẩm
-* **US03:** Là khách hàng, tôi muốn tìm kiếm sách theo tên, tác giả hoặc danh mục để nhanh chóng chọn được cuốn sách mong muốn.
-* **US04:** Là khách hàng, tôi muốn xem chi tiết sách (giá, mô tả, hình ảnh, số lượng tồn) để cân nhắc trước khi quyết định mua.
+Di chuyển vào thư mục frontend.
 
-### Mua hàng & Thanh toán
-* **US05:** Là khách hàng, tôi muốn thêm sách vào giỏ hàng và điều chỉnh số lượng để chuẩn bị cho việc thanh toán.
-* **US06:** Là khách hàng, tôi muốn thực hiện đặt hàng và chọn phương thức thanh toán (COD hoặc chuyển khoản) để hoàn tất giao dịch.
+```bash
+cd frontend
+```
 
-### Đánh giá & Theo dõi
-* **US07:** Là khách hàng, tôi muốn xem trạng thái đơn hàng (Đang xử lý, Đang giao, Đã giao) để biết khi nào nhận được sách.
-* **US08:** Là khách hàng, tôi muốn viết đánh giá và bình luận về cuốn sách đã mua để chia sẻ cảm nhận với những người dùng khác.
+Cài đặt thư viện.
+
+```bash
+npm install
+```
 
 ---
 
-## 2. Nhóm người dùng: Quản trị viên (Admin)
+# Cài đặt Backend
 
-### Quản lý sản phẩm & Danh mục
-* **US09:** Là admin, tôi muốn thêm, sửa, xóa thông tin sách và danh mục sách để duy trì dữ liệu cửa hàng luôn cập nhật.
+Mở Terminal mới.
 
-### Quản lý đơn hàng
-* **US10:** Là admin, tôi muốn xem danh sách đơn hàng và cập nhật trạng thái đơn (Xác nhận, Đang giao, Hoàn tất) để xử lý quy trình bán hàng.
+Di chuyển vào thư mục backend.
 
-### Thống kê & Quản lý người dùng
-* **US11:** Là admin, tôi muốn xem báo cáo doanh thu và sản phẩm bán chạy theo thời gian để đưa ra kế hoạch kinh doanh phù hợp.
-* **US12:** Là admin, tôi muốn quản lý (khóa/mở) tài khoản người dùng để đảm bảo an toàn cho hệ thống.
+```bash
+cd backend
+```
 
----
+Cài đặt thư viện.
 
-# CHƯƠNG 2: PHÂN TÍCH YÊU CẦU VÀ ĐỐI TƯỢNG HỆ THỐNG
-
-## 1. Phân tích yêu cầu chung
-Hệ thống cần quản lý toàn bộ chu trình bán sách trực tuyến từ khâu cập nhật hàng hóa, hiển thị cho khách hàng, xử lý giỏ hàng, tạo đơn hàng đến khâu lưu trữ lịch sử và thống kê doanh thu.
+```bash
+npm install
+```
 
 ---
 
-## 2. Danh sách các Đối tượng (Entities/Classes), Thuộc tính và Phương thức
+# Thiết lập cơ sở dữ liệu
 
-| Đối tượng (Object) | Thuộc tính (Attributes) | Phương thức (Methods) |
-| :--- | :--- | :--- |
-| **User (NguoiDung)** | `ma_nguoi_dung`, `ho_ten`, `email`, `mat_khau`, `so_dien_thoai`, `dia_chi`, `vai_tro` | `dang_ky()`, `dang_nhap()`, `cap_nhat_thong_tin()`, `doi_mat_khau()` |
-| **Category (DanhMuc)** | `ma_danh_muc`, `ten_danh_muc`, `mo_ta` | `them_danh_muc()`, `sua_danh_muc()`, `xoa_danh_muc()` |
-| **Book (Sach)** | `ma_sach`, `ten_sach`, `tac_gia`, `gia_ban`, `so_luong_ton`, `hinh_anh`, `mo_ta`, `ma_danh_muc` | `them_sach()`, `sua_thong_tin()`, `cap_nhat_so_luong()`, `xoa_sach()` |
-| **Cart (GioHang)** | `ma_gio_hang`, `ma_nguoi_dung`, `tong_tien_tam_tinh` | `them_vao_gio()`, `xoa_khoi_gio()`, `cap_nhat_so_luong()`, `xoa_sach_trong_gio()` |
-| **Order (DonHang)** | `ma_don_hang`, `ma_nguoi_dung`, `ngay_dat`, `tong_tien`, `trang_thai`, `dia_chi_giao_hang` | `tao_don_hang()`, `cap_nhat_trang_thai()`, `huy_don_hang()` |
-| **OrderDetail (ChiTietDonHang)** | `ma_chi_tiet`, `ma_don_hang`, `ma_sach`, `so_luong`, `don_gia` | `tinh_thanh_tien()` |
-| **Review (DanhGia)** | `ma_danh_gia`, `ma_nguoi_dung`, `ma_sach`, `so_sao`, `noi_dung`, `ngay_danh_gia` | `them_danh_gia()`, `xoa_danh_gia()` |
+## Bước 1: Tạo Database
 
+Mở MySQL Workbench và tạo cơ sở dữ liệu:
+
+```sql
+CREATE DATABASE bookstore;
+```
+## Bước 2: Import cơ sở dữ liệu
+Trong MySQL Workbench:
+1. Chọn **Server → Data Import**
+2. Chọn **Import from Self-Contained File**
+3. Chọn file:
+```
+bookstore.sql
+```
+4. Chọn database:
+```
+bookstore
+```
+5. Nhấn **Start Import**.
+Sau khi import thành công, cơ sở dữ liệu sẽ chứa toàn bộ bảng và dữ liệu cần thiết để chạy dự án.
 ---
-
-## 3. Mối quan hệ giữa các đối tượng (Relationships)
-
-* **DanhMuc - Sach (Quan hệ 1 - N):** Một danh mục có thể chứa nhiều cuốn sách; một cuốn sách thuộc về một danh mục chính.
-* **NguoiDung - DonHang (Quan hệ 1 - N):** Một người dùng có thể đặt nhiều đơn hàng; một đơn hàng thuộc về một người dùng.
-* **NguoiDung - GioHang (Quan hệ 1 - 1):** Mỗi người dùng tại một thời điểm sở hữu một giỏ hàng duy nhất.
-* **DonHang - Sach (Quan hệ N - N thông qua ChiTietDonHang):** Một đơn hàng chứa nhiều cuốn sách; một cuốn sách có thể nằm trong nhiều đơn hàng.
-* **NguoiDung - Sach (Quan hệ N - N thông qua DanhGia):** Một người dùng đánh giá nhiều cuốn sách; một cuốn sách nhận nhiều đánh giá.
-
+## Bước 3: Cấu hình Backend
+Tạo file:
+```
+backend/.env
+```
+copy nội dung từ file .env.example qua file .env và thay đổi nội dung theo hướng dẫn
+# API chính
+## Authentication
+```
+POST    /auth/register
+POST    /auth/login
+```
 ---
-
-## 4. Luồng hoạt động chính (Workflow)
-
-```text
-[Khách hàng] ──> Chọn Sách ──> Thêm vào Giỏ hàng ──> Đặt hàng (Tạo Đơn hàng)
-                                                               │
-[Admin] <── Kiểm tra số lượng tồn & Cập nhật trạng thái <──────┘
+## Books
+```
+GET     /books
+GET     /books/:id
+POST    /books
+PATCH   /books/:id
+DELETE  /books/:id
+```
+---
+## Categories
+```
+GET     /categories
+POST    /categories
+PATCH   /categories/:id
+DELETE  /categories/:id
+```
+---
+## Cart
+```
+GET     /cart
+POST    /cart
+PATCH   /cart/:id
+DELETE  /cart/:id
+```
+---
+## Orders
+```
+GET     /orders
+POST    /orders
+GET     /orders/:id
+```
+---
+# Kiểm thử
+Dự án sử dụng **Jest** để thực hiện Unit Test.
+Chạy kiểm thử:
+```bash
+npm run test
+```
+Kết quả:
+```
+Test Suites: 15 passed, 15 total
+Tests: 41 passed, 41 total
+```
+---
+# Kiến trúc hệ thống
+```
+ReactJS
+      │
+      ▼
+NestJS Controller
+      │
+      ▼
+Service
+      │
+      ▼
+TypeORM Repository
+      │
+      ▼
+MySQL Database
+```
+---
+# Bảo mật
+- Mã hóa mật khẩu bằng Bcrypt
+- Xác thực người dùng bằng JWT
+- Kiểm tra dữ liệu đầu vào bằng Class Validator
+- Xử lý ngoại lệ bằng Exception Filter
+---
+# Thành viên nhóm
+| MSSV | Họ và tên | Công việc |
+|------|-----------|-----------|
+| 24102976 | Trần Văn Dũng | Frontend |
+| 24100298 | Nguyễn Lê Trung Nguyên | Backend |
+| 24100024 | Nguyễn Viết Hải Lâm | Database |
+---
+# Kết quả đạt được
+- Xây dựng thành công website bán sách.
+- Hoàn thành đầy đủ các chức năng CRUD.
+- Áp dụng JWT Authentication.
+- Kết nối MySQL bằng TypeORM.
+- Thực hiện Unit Test với Jest.
+- Hoàn thành sơ đồ UML và kiểm thử ứng dụng.
+---
+# Hướng phát triển
+- Thanh toán trực tuyến.
+- Đánh giá và bình luận sách.
+- Quản lý khuyến mãi.
+- Gợi ý sách bằng AI.
+- Tích hợp Email thông báo đơn hàng.
+---
+# Giấy phép
+Dự án được phát triển phục vụ mục đích học tập trong học phần **Thiết kế web nâng cao**.

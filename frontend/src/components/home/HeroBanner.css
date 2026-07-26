@@ -1,0 +1,50 @@
+.hero-banner {
+  background: #2563eb;
+  color: white;
+
+  border-radius: 20px;
+
+  padding: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 40px;
+
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 50%;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.hero-content button {
+  background: white;
+
+  color: #2563eb;
+
+  border: none;
+
+  padding: 14px 28px;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+}
+
+.hero-banner img {
+  width: 380px;
+
+  border-radius: 15px;
+}
