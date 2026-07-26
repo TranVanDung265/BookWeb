@@ -71,7 +71,7 @@ Trước khi chạy dự án cần cài đặt:
 # Hướng dẫn cài đặt
 ## 1. Clone project
 ```bash
-git clone https://github.com/TranVanDung265/BookWeb.git
+git clone https://github.com/TranVanDung265/BookWeb
 ```
 Di chuyển vào thư mục dự án
 ```bash
